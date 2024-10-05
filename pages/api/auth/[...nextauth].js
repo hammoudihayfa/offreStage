@@ -1,3 +1,4 @@
+
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -9,11 +10,12 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/auth/signin', 
   },
   callbacks: {
-    async session(session, user) {
-      return session;
+    async session({ session, user }) {
+      return session; 
     },
   },
+  secret: process.env.NEXTAUTH_SECRET, 
 });
