@@ -1,19 +1,40 @@
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import styles from './Profile.module.css'; // Importez le CSS
+import styles from './Profile.module.css';
 
 const Profile = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession(); 
   const [userInfo, setUserInfo] = useState({
-    name: session?.user?.name || '',
-    email: session?.user?.email || '',
+    name: '',
+    email: '',
     firstName: '', 
     birthDate: '', 
     address: '',   
     phoneNumber: '', 
-    addressValid: true, 
   });
+
+  const [errorMessage, setErrorMessage] = useState('');
+
+  useEffect(() => {
+    if (status === "loading") {
+      return; 
+    }
+    
+    if (!session) {
+      console.error("User is not authenticated");
+      return;
+    } else {
+      setUserInfo({
+        name: session.user.name || '',
+        email: session.user.email || '',
+        firstName: '', 
+        birthDate: '', 
+        address: '',   
+        phoneNumber: '', 
+      });
+    }
+  }, [session, status]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,16 +73,24 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setErrorMessage(''); 
     const isAddressValid = await validateAddress(userInfo.address);
     if (!isAddressValid) {
-      alert("L'adresse doit être située à moins de 50 km de Paris.");
+      setErrorMessage("L'adresse doit être située à moins de 50 km de Paris.");
       return;
     }
 
-    await axios.post('/api/user/update', userInfo);
-    alert("Informations mises à jour avec succès !");
+    try {
+      await axios.post('/api/user/update', userInfo);
+      alert("Informations mises à jour avec succès !");
+    } catch (error) {
+      setErrorMessage("Une erreur est survenue lors de la mise à jour.");
+    }
   };
+
+  if (!session) {
+    return <p>Chargement...</p>; 
+  }
 
   return (
     <div className={styles.container}>
@@ -101,7 +130,7 @@ const Profile = () => {
             onChange={handleChange}
             placeholder="Email"
             required
-            disabled
+            disabled 
           />
         </div>
         <div className={styles.inputGroup}>
@@ -141,7 +170,7 @@ const Profile = () => {
         </div>
         <button className={styles.button} type="submit">Mettre à jour</button>
       </form>
-      {!userInfo.addressValid && <p style={{ color: 'red' }}>L'adresse n'est pas valide !</p>}
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
     </div>
   );
 };
