@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement */
+    justify-content: center; /* Centre verticalement */
+    min-height: 100vh; /* Hauteur minimale de 100% de la fenêtre */
+    background-color: #f0f4ff; /* Couleur d'arrière-plan douce */
+  }
+  
+  .title {
+    margin-bottom: 20px;
+    color: #004085; /* Couleur bleue pour le titre */
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 300px; /* Largeur du formulaire */
+    padding: 20px;
+    border: 1px solid #004085; /* Bordure bleue */
+    border-radius: 5px; /* Coins arrondis */
+    background-color: white; /* Fond blanc pour le formulaire */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour le formulaire */
+  }
+  
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px; /* Marge entre les groupes d'entrée */
+  }
+  
+  .label {
+    margin-bottom: 5px; /* Marge entre l'étiquette et le champ */
+    color: #004085; /* Couleur bleue pour les étiquettes */
+  }
+  
+  .input {
+    padding: 10px;
+    border: 1px solid #b8daff; /* Bordure légère */
+    border-radius: 5px; /* Coins arrondis */
+  }
+  
+  .button {
+    padding: 10px;
+    background-color: #004085; /* Couleur bleue pour le bouton */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur main sur hover */
+  }  

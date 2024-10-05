@@ -1,0 +1,44 @@
+/* SignIn.module.css */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Utilise toute la hauteur de la fenêtre */
+  background-color: #f0f4ff; /* Couleur d'arrière-plan douce, cohérente avec le formulaire */
+}
+
+.card {
+  background: white; /* Fond blanc pour la carte */
+  padding: 2rem;
+  border-radius: 8px; /* Coins arrondis */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  text-align: center; /* Centrer le texte */
+  max-width: 400px; /* Largeur maximum de la carte */
+  width: 100%; /* S'assurer que ça prend toute la largeur disponible */
+}
+
+.title {
+  font-size: 24px; /* Taille de la police pour le titre */
+  margin-bottom: 1rem; /* Espacement en bas du titre */
+  color: #004085; /* Couleur bleue pour le titre */
+}
+
+.description {
+  margin-bottom: 1.5rem; /* Espacement entre la description et le bouton */
+  color: #666; /* Couleur de la description */
+}
+
+.button {
+  background-color: #004085; /* Couleur de fond du bouton, cohérente avec le formulaire */
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  border-radius: 5px; /* Coins arrondis pour le bouton */
+  padding: 0.75rem 1.5rem; /* Espacement interne */
+  font-size: 16px; /* Taille de la police */
+  cursor: pointer; /* Curseur en main */
+  transition: background-color 0.3s ease; /* Animation de la couleur de fond */
+}
+
+.button:hover {
+  background-color: #357ae8; /* Couleur de fond au survol */
+}
